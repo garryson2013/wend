@@ -145,8 +145,9 @@
         .couple-photos {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: nowrap;
             margin: 40px 0 30px;
         }
         .photo-card {
@@ -436,6 +437,27 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+ @media (max-width: 600px) {
+            .couple-photos {
+                flex-direction: row;
+                flex-wrap: nowrap;
+                gap: 16px;
+            }
+            .photo-card {
+                width: 150px;
+                padding: 14px 10px 10px 10px;
+            }
+            .photo-card img {
+                width: 110px;
+                height: 110px;
+            }
+            .photo-card h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+
+        
     </style>
 </head>
 <body>
