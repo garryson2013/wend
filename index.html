@@ -455,8 +455,21 @@
                 font-size: 1.2rem;
             }
         }
-
-
+          .fade-in-names {
+            animation: revealNames 2s ease-out forwards;
+        }
+        .fade-in-names .amp {
+            animation: revealAmp 2.5s ease-out forwards;
+        }
+        @keyframes revealNames {
+            0% { opacity: 0; transform: translateY(30px); letter-spacing: 15px; }
+            100% { opacity: 1; transform: translateY(0); letter-spacing: -0.5px; }
+        }
+        @keyframes revealAmp {
+            0% { opacity: 0; transform: scale(0); }
+            70% { opacity: 0; transform: scale(0); }
+            100% { opacity: 1; transform: scale(1); }
+        }
         
     </style>
 </head>
@@ -465,7 +478,7 @@
 <section class="hero">
     <div class="hero-content">
         <div class="hero-subtitle">САМЫЙ НЕЖНЫЙ ДЕНЬ</div>
-        <h1 class="typewriter">Игорь <span class="amp">&</span> Варвара</h1>
+      <h1 class="fade-in-names">Игорь <span class="amp">&</span> Варвара</h1>
         <div class="hero-date">25 августа 2026</div>
         <p style="max-width: 500px; margin: 0 auto; font-size: 1.1rem;">С радостью приглашаем вас разделить нашу любовь и стать частью этого незабываемого дня</p>
         <div class="address-block">
