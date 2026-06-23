@@ -455,6 +455,36 @@
                 font-size: 1.2rem;
             }
         }
+           /* Анимация загрузки формы */
+        .btn-loading {
+            pointer-events: none;
+            opacity: 0.7;
+            position: relative;
+        }
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 70%;
+            margin-top: -10px;
+            border: 2px solid #fff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #formSuccess {
+            animation: popIn 0.5s ease-out;
+        }
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
         
     </style>
 </head>
@@ -660,9 +690,16 @@
     const weddingForm = document.getElementById('weddingForm');
     const formSuccess = document.getElementById('formSuccess');
     const formError = document.getElementById('formError');
+    const submitBtn = weddingForm.querySelector('button[type="submit"]');
 
     weddingForm.addEventListener('submit', function(e) {
         e.preventDefault();
+
+        // Показываем загрузку
+        submitBtn.classList.add('btn-loading');
+        submitBtn.innerHTML = '<i class="fas fa-spinner"></i> Отправляем...';
+        formSuccess.style.display = 'none';
+        formError.style.display = 'none';
 
         const name = document.getElementById('guestName').value;
         const count = document.getElementById('guestCount').value;
@@ -680,13 +717,16 @@
             formSuccess.style.display = 'block';
             formError.style.display = 'none';
             weddingForm.reset();
+            submitBtn.classList.remove('btn-loading');
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить';
             setTimeout(() => { formSuccess.style.display = 'none'; }, 5000);
         })
         .catch(() => {
             formError.style.display = 'block';
+            submitBtn.classList.remove('btn-loading');
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Отправить';
         });
     });
-
 </script>
 </body>
 </html>
