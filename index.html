@@ -651,11 +651,7 @@
             }
         });
     }
-    window.addEventListener('scroll', checkFadeIn);
-    window.addEventListener('load', checkFadeIn);
-    checkFadeIn();
-
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyb6CPwDsZtPQ0Vo-f_lHYUNfARIz66k8K9wGeoU-jmsCtrxkfLvdxOJj2sGufE5etJQA/exec';
+     const FORMSPREE_URL = 'https://formspree.io/f/xrewbeap';
 
     const weddingForm = document.getElementById('weddingForm');
     const formSuccess = document.getElementById('formSuccess');
@@ -668,12 +664,14 @@
         const count = document.getElementById('guestCount').value;
         const attending = document.querySelector('input[name="attending"]:checked').value;
 
-        fetch(GOOGLE_SCRIPT_URL, {
+        fetch(FORMSPREE_URL, {
             method: 'POST',
             body: JSON.stringify({ name: name, guests: count, attending: attending }),
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
         })
-        .then(response => response.json())
         .then(() => {
             formSuccess.style.display = 'block';
             formError.style.display = 'none';
